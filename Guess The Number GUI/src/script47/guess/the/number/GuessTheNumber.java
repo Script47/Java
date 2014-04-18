@@ -16,12 +16,12 @@ public class GuessTheNumber extends JFrame {
 
     public static ImageIcon image = new ImageIcon(GuessTheNumber.class.getResource("icon.png"));
 
+    Game game = new Game();
+
     public JTextArea stringGuess = new JTextArea();
-    public JTextArea credits = new JTextArea("Credits\nDeveloper: Script47\nVersion: ");
+    public JTextArea credits = new JTextArea("Credits\nDeveloper: Script47\nVersion: "+game.getVersion());
 
     public JButton guessButton = new JButton("Guess!");
-
-    Game game = new Game();
 
     public GuessTheNumber() {
         setTitle("Guess The Number - Lives: "+game.getLives());
@@ -44,6 +44,8 @@ public class GuessTheNumber extends JFrame {
         guessButton.setToolTipText("Guess!");
         guessButton.setFont(new Font("monospaced", Font.PLAIN, 12));
         guessButton.setFocusPainted(false);
+
+        game.popUpBox("Guess The Number<br/>Developed By Script47<br/>Version: "+game.getVersion()+"<br/><br/>Rules<br/><li>I will choose a number between 1-10.</li><li>You have to try and guess it, you have 3 lives. Each time you get it right you will get a life, however if you get it wrong you'll lose one.</li><li>If you feel like giving up, then type 0 and hit Guess, the answer will be revealed and you can try again if you want.</li>", "Guess The Number");
 
         guessButton.addActionListener(new AbstractAction() {
             @Override
@@ -103,6 +105,7 @@ public class GuessTheNumber extends JFrame {
         container.add(credits);
         container.add(stringGuess);
         container.add(guessButton);
+        container.revalidate();
         container.repaint();
     }
 
